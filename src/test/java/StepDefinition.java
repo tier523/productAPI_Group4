@@ -1,9 +1,12 @@
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class StepDefinition {
 
@@ -12,7 +15,9 @@ public class StepDefinition {
     @Given("The Shop is available")
     public void the_shop_is_available() {
         System.setProperty("webdriver.chrome.driver", "G:\\_AutoTestKurs\\Laboration2\\Selenium\\chromedriver-win64\\chromedriver.exe");
-        driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+        driver = new ChromeDriver(options);
     }
     @When("User visits The Shop")
     public void user_visits_the_shop() {
@@ -25,4 +30,10 @@ public class StepDefinition {
         String actualTitle = driver.getTitle();
         Assertions.assertEquals(expectedTitle, actualTitle);
     }
+
+    @And("Close the browser")
+    public void closeBrowser(){
+        driver.quit();
+    }
+
 }
