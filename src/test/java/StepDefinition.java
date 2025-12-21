@@ -4,7 +4,9 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -52,4 +54,52 @@ public class StepDefinition {
             driver.quit();
         }
     }
+
+    @Given("User wants to add item to cart")
+    public void user_wants_to_add_item_to_cart() {
+        driver.get("https://webshop-agil-testautomatiserare.netlify.app/");
+
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
+
+    @When("Item is added to the cart")
+    public void item_is_added_to_the_cart() {
+
+        WebElement allProductsButton = driver.findElement(By.cssSelector(".btn-primary"));
+        allProductsButton.click();
+
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+
+
+        WebElement addToCartButton = driver.findElement(By.cssSelector(".btn.btn-primary"));
+        addToCartButton.click();
+
+
+        WebElement goToCheckOutButton = driver.findElement(By.cssSelector(".btn.btn-warning"));
+        goToCheckOutButton.click();
+    }
+
+    @Then("The cart size should be 1")
+    public void the_cart_size_should_be_1() {
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+
+        WebElement cartSizeElement = driver.findElement(By.id("cartSize"));
+        String cartSizeText = cartSizeElement.getText();
+
+        Assertions.assertNotNull(cartSizeText);
+        Assertions.assertTrue(cartSizeText.equals("1"), "CartSize ska vara 1");
+    }
+
 }

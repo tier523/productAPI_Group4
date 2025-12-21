@@ -1,7 +1,9 @@
 package com.example.produktapi;
 import org.junit.jupiter.api.*;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -36,4 +38,41 @@ public class TheShopUnitTests {
         Assertions.assertNotNull(websiteTitle);
         assertTrue(websiteTitle.contains("The Shop"), "Sidtiteln ska innehålla The Shop");
     }
+
+    @Test
+    @DisplayName("Lägg till varor i varukorgen")
+    public void AddToCart() {
+
+        var allProductsButton = driver.findElement(
+                org.openqa.selenium.By.cssSelector(".btn-primary")
+        );
+
+        allProductsButton.click();
+
+        try {
+            Thread.sleep(3000); // 3 sekunder
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+
+        var addToCartButton = driver.findElement(
+                org.openqa.selenium.By.cssSelector(".btn.btn-primary")
+        );
+        addToCartButton.click();
+
+
+        var goToCheckOutButton = driver.findElement(
+                org.openqa.selenium.By.cssSelector(".btn.btn-warning")
+        );
+        goToCheckOutButton.click();
+
+        WebElement cartSizeElement = driver.findElement(By.id("cartSize"));
+
+        String cartSizeText = cartSizeElement.getText();
+
+        Assertions.assertNotNull(cartSizeText);
+        assertTrue(cartSizeText.equals("1"), "CartSize ska vara 1");
+
+    }
+
 }
