@@ -56,7 +56,7 @@ public class StepDefinition {
     }
 
 
-    @Given("The cart is empty when page loads for the first time")
+    @Given("The user is on the webshop homepage for the first time")
     public void cart_empty_when_page_loads(){
         driver.get("https://webshop-agil-testautomatiserare.netlify.app/");
 

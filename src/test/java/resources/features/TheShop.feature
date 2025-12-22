@@ -7,7 +7,7 @@ Feature: The Shop
 
 
   Scenario: Check cart counter is empty when page loads first
-    Given The cart is empty when page loads for the first time
+    Given The user is on the webshop homepage for the first time
     Then The cart counter should be empty
 
 
