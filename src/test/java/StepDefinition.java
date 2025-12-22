@@ -55,6 +55,29 @@ public class StepDefinition {
         }
     }
 
+
+    @Given("The cart is empty when page loads for the first time")
+    public void cart_empty_when_page_loads(){
+        driver.get("https://webshop-agil-testautomatiserare.netlify.app/");
+
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
+
+    @Then("The cart counter should be empty")
+    public void cart_counter_should_be_empty() {
+
+        WebElement checkCartCounter = driver.findElement(By.id("buttonSize"));
+        String cartCounter = checkCartCounter.getText();
+
+        Assertions.assertNotNull(cartCounter);
+        Assertions.assertEquals("", cartCounter);
+
+    }
+
     @Given("User wants to add item to cart")
     public void user_wants_to_add_item_to_cart() {
         driver.get("https://webshop-agil-testautomatiserare.netlify.app/");
@@ -101,5 +124,8 @@ public class StepDefinition {
         Assertions.assertNotNull(cartSizeText);
         Assertions.assertTrue(cartSizeText.equals("1"), "CartSize ska vara 1");
     }
+
+
+
 
 }

@@ -39,6 +39,26 @@ public class TheShopUnitTests {
         assertTrue(websiteTitle.contains("The Shop"), "Sidtiteln ska innehålla The Shop");
     }
 
+
+    @Test
+    @DisplayName("Kolla om varukorgen är tom när sidan läddas första gången")
+    public void checkCartCounter() {
+        try {
+            Thread.sleep(3000); // vänta för 3 sekunder
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+
+        WebElement cartCounterElement = driver.findElement(By.id("buttonSize"));
+        String cartCounter = cartCounterElement.getText();
+
+        Assertions.assertNotNull(cartCounter);
+        Assertions.assertEquals("", cartCounter);
+
+    }
+
+
+
     @Test
     @DisplayName("Lägg till varor i varukorgen")
     public void AddToCart() {
@@ -74,5 +94,9 @@ public class TheShopUnitTests {
         assertTrue(cartSizeText.equals("1"), "CartSize ska vara 1");
 
     }
+
+
+
+
 
 }
