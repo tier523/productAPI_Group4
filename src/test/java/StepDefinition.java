@@ -5,6 +5,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -91,6 +92,7 @@ public class StepDefinition {
 
     @When("Item is added to the cart")
     public void item_is_added_to_the_cart() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         WebElement allProductsButton = driver.findElement(By.cssSelector(".btn-primary"));
         allProductsButton.click();
@@ -101,9 +103,9 @@ public class StepDefinition {
             Thread.currentThread().interrupt();
         }
 
+        WebElement addToCartButton = wait.until( ExpectedConditions.elementToBeClickable(By.cssSelector(".card .btn.btn-primary")) );
 
-        WebElement addToCartButton = driver.findElement(By.cssSelector(".btn.btn-primary"));
-        addToCartButton.click();
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", addToCartButton);
 
 
         WebElement goToCheckOutButton = driver.findElement(By.cssSelector(".btn.btn-warning"));

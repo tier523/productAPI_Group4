@@ -1,10 +1,15 @@
 package com.example.produktapi;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -62,6 +67,7 @@ public class TheShopUnitTests {
     @Test
     @DisplayName("Lägg till varor i varukorgen")
     public void AddToCart() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         var allProductsButton = driver.findElement(
                 org.openqa.selenium.By.cssSelector(".btn-primary")
@@ -75,10 +81,9 @@ public class TheShopUnitTests {
             Thread.currentThread().interrupt();
         }
 
-        var addToCartButton = driver.findElement(
-                org.openqa.selenium.By.cssSelector(".btn.btn-primary")
-        );
-        addToCartButton.click();
+        WebElement addToCartButton = wait.until( ExpectedConditions.elementToBeClickable(By.cssSelector(".card .btn.btn-primary")) );
+
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", addToCartButton);
 
 
         var goToCheckOutButton = driver.findElement(
@@ -92,7 +97,6 @@ public class TheShopUnitTests {
 
         Assertions.assertNotNull(cartSizeText);
         assertTrue(cartSizeText.equals("1"), "CartSize ska vara 1");
-
     }
 
 
