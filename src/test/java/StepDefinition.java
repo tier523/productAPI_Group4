@@ -93,6 +93,40 @@ public class StepDefinition {
         Assertions.assertEquals("1", cartSizeText, "CartSize ska vara 1");
     }
 
+    @When("The user clicks on the all products button")
+    public void the_user_clicks_on_the_all_products_button() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        WebElement allProductsButton = wait.until(
+                ExpectedConditions.elementToBeClickable(By.cssSelector(".btn-primary"))
+        );
+        allProductsButton.click();
+    }
+
+    @Then("The top section of the page should display all product categories")
+    public void the_top_section_should_display_all_product_categories() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        String[] expectedCategories = {
+                "All",
+                "Men's clothing",
+                "Women's clothing",
+                "Jewelery",
+                "Electronics"
+        };
+        for (String category : expectedCategories) {
+            WebElement categoryElement = wait.until(
+                    ExpectedConditions.visibilityOfElementLocated(
+                            By.xpath("//*[text()=\"" + category + "\"]")
+                    )
+            );
+            Assertions.assertTrue(
+                    categoryElement.isDisplayed(),
+                    "Category should be visible: " + category
+            );
+        }
+    }
+
     @After
     public void closeBrowser() {
         sleep(3000);

@@ -15,3 +15,9 @@ Feature: The Shop
     Given User wants to add item to cart
     When Item is added to the cart
     Then The cart size should be 1
+
+
+  Scenario: Verify product categories display
+    Given The user is on the webshop homepage for the first time
+    When The user clicks on the all products button
+    Then The top section of the page should display all product categories
