@@ -33,4 +33,19 @@ class ProductServiceTest {
         assertNotNull(categories);
         assertFalse(categories.isEmpty());
     }
+
+    @Test
+    public void getProductById_existing() {
+        Product product = productService.getAllProducts().get(0);
+        Product result = productService.getProductById(product.getId());
+        assertEquals(product.getId(), result.getId());
+        assertEquals(product.getTitle(), result.getTitle());
+    }
+
+    @Test
+    public void getProductsByCategory_nonExistingCategory() {
+        List<Product> products = productService.getProductsByCategory("NoSuchCategory");
+        assertNotNull(products);
+        assertTrue(products.isEmpty());
+    }
 }

@@ -38,4 +38,28 @@ class ProductTest {
         System.out.println(product.getCategory());
         System.out.println(product.getTitle());
     }
+
+    @Test
+    public void getDescription() {
+        assertEquals("Test Desc.", product.getDescription());
+    }
+
+    @Test
+    public void getImage() {
+        assertEquals("Acer.jpeg", product.getImage());
+    }
+
+    @Test
+    public void setTitleAndPrice() {
+        product.setTitle("Dell");
+        product.setPrice(799.00);
+        assertEquals("Dell", product.getTitle());
+        assertEquals(799.00, product.getPrice());
+    }
+
+    @Test
+    public void setAndGetId() {
+        product.setId(100);
+        assertEquals(100, product.getId());
+    }
 }
