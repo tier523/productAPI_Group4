@@ -28,8 +28,8 @@ Skriv testfallen utifrån <i>given, when, then.</i>
 - Godkän PR genom att göra 'squash & merge'
 
 ## Sprintar
-- Sprint 1, Tim var SCRUM-master [Dokumentation sprint 1](https://github.com/tier523/productAPI/wiki/Sprint-1)
-- Sprint 2, Elin var SCRUM-master (pågående) [Dokumentation sprint 2](https://github.com/tier523/productAPI/wiki/Sprint-2)
+- Sprint 1, Tim var SCRUM-master [Dokumentation sprint 1](https://github.com/tier523/productAPI_Group4/wiki/Sprint-1)
+- Sprint 2, Elin var SCRUM-master (pågående) [Dokumentation sprint 2](https://github.com/tier523/productAPI_Group4/wiki/Sprint-2)
 
 
 
