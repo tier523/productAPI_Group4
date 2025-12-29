@@ -13,7 +13,7 @@ import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class TheShopUnitTests {
+public class TheShopSystemTests {
     WebDriver driver;
 
     @BeforeEach
