@@ -35,7 +35,11 @@ public class StepDefinition {
 
     @When("User visits The Shop")
     public void user_visits_the_shop() {
-        // Optional navigation
+        // Inga onödiga navigeringar och den representerar tydligt handlingen
+        driver.get("https://webshop-agil-testautomatiserare.netlify.app/");
+
+        new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.titleIs("The Shop"));
     }
 
     @Then("The title should be {string}")
