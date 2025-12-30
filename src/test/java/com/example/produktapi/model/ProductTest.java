@@ -62,4 +62,15 @@ class ProductTest {
         product.setId(100);
         assertEquals(100, product.getId());
     }
+
+    @Test void testNoArgsConstructor() {
+        Product product = new Product();
+        assertNotNull(product);
+        assertNull(product.getId());
+        assertNull(product.getTitle());
+        assertNull(product.getPrice());
+        assertNull(product.getCategory());
+        assertNull(product.getDescription());
+        assertNull(product.getImage());
+    }
 }
