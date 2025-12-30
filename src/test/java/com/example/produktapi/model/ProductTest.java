@@ -104,4 +104,15 @@ class ProductTest {
         assertEquals("https://example.com/img.png", product.getImage());
     }
 
+    @Test //Tim
+    void testIdCanBeChanged() {
+        Product product = new Product();
+        assertNull(product.getId());
+
+        product.setId(1);
+        assertEquals(1, product.getId());
+
+        product.setId(2);
+        assertEquals(2, product.getId());
+    }
 }
