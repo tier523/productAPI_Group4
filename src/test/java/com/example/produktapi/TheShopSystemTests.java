@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class TheShopSystemTests {
     WebDriver driver;
 
-    @BeforeEach
+    @BeforeEach //Tim
     public void setUp() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
@@ -24,14 +24,14 @@ public class TheShopSystemTests {
         driver.get("https://webshop-agil-testautomatiserare.netlify.app/");
     }
 
-    @AfterEach
+    @AfterEach //Tim
     public void tearDown() {
         if (driver != null) {
             driver.quit();
         }
     }
 
-    @Test
+    @Test //SiaSam, Tim
     @DisplayName("Hemsidans Titel visas korrekt")
     public void checkWebSiteTitle() {
         try {
@@ -64,7 +64,7 @@ public class TheShopSystemTests {
 
 
 
-    @Test
+    @Test //Elin, Tim
     @DisplayName("Lägg till varor i varukorgen")
     public void AddToCart() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));

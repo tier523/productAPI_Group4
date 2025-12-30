@@ -62,4 +62,24 @@ class ProductTest {
         product.setId(100);
         assertEquals(100, product.getId());
     }
+
+    @Test //Tim
+    void testSettersAndGetters() {
+        Product product = new Product();
+
+        product.setId(10);
+        product.setTitle("New Title");
+        product.setPrice(55.5);
+        product.setCategory("men's clothing");
+        product.setDescription("Some description");
+        product.setImage("https://example.com/img.png");
+
+        assertEquals(10, product.getId());
+        assertEquals("New Title", product.getTitle());
+        assertEquals(55.5, product.getPrice());
+        assertEquals("men's clothing", product.getCategory());
+        assertEquals("Some description", product.getDescription());
+        assertEquals("https://example.com/img.png", product.getImage());
+    }
+
 }

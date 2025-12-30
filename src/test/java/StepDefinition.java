@@ -19,13 +19,13 @@ public class StepDefinition {
 
     private WebDriver driver;
 
-    @Before
+    @Before //Tim
     public void setUp() {
         ChromeOptions options = new ChromeOptions();
         driver = new ChromeDriver(options);
     }
 
-    @Given("The Shop is available")
+    @Given("The Shop is available") //SiaSam, Tim
     public void the_shop_is_available() {
         driver.get("https://webshop-agil-testautomatiserare.netlify.app/");
 
@@ -38,7 +38,7 @@ public class StepDefinition {
         // Optional navigation
     }
 
-    @Then("The title should be {string}")
+    @Then("The title should be {string}") //Tim
     public void the_title_should_be(String expectedTitle) {
         Assertions.assertEquals(expectedTitle, driver.getTitle());
     }
@@ -64,7 +64,7 @@ public class StepDefinition {
         sleep(3000);
     }
 
-    @When("Item is added to the cart")
+    @When("Item is added to the cart") //Elin, SiaSam, Tim
     public void item_is_added_to_the_cart() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
