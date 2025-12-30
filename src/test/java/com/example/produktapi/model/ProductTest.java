@@ -62,4 +62,25 @@ class ProductTest {
         product.setId(100);
         assertEquals(100, product.getId());
     }
+
+    @Test //Tim
+    void testMutability() {
+        Product product = new Product(
+                "Title",
+                10.0,
+                "cat",
+                "desc",
+                "img");
+
+        product.setTitle("Updated Title");
+        product.setPrice(20.0);
+        product.setCategory("updated category");
+        product.setDescription("updated desc");
+        product.setImage("updated.png");
+
+        assertEquals("Updated Title", product.getTitle());
+        assertEquals(20.0, product.getPrice());
+        assertEquals("updated category", product.getCategory());
+        assertEquals("updated desc", product.getDescription());
+        assertEquals("updated.png", product.getImage()); }
 }
