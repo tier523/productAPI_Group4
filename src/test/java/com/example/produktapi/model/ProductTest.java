@@ -62,4 +62,21 @@ class ProductTest {
         product.setId(100);
         assertEquals(100, product.getId());
     }
+
+    @Test //Tim
+    void testAllArgsConstructor() {
+        Product product = new Product(
+                "Test Title",
+                99.99,
+                "electronics",
+                "A test description",
+                "https://example.com/image.jpg" );
+
+        assertNull(product.getId()); // ID is generated, not set in constructor
+        assertEquals("Test Title", product.getTitle());
+        assertEquals(99.99, product.getPrice());
+        assertEquals("electronics", product.getCategory());
+        assertEquals("A test description", product.getDescription());
+        assertEquals("https://example.com/image.jpg", product.getImage());
+    }
 }
