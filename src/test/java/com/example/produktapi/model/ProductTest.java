@@ -62,4 +62,16 @@ class ProductTest {
         product.setId(100);
         assertEquals(100, product.getId());
     }
+
+    @Test //Tim
+    void testIdCanBeChanged() {
+        Product product = new Product();
+        assertNull(product.getId());
+
+        product.setId(1);
+        assertEquals(1, product.getId());
+
+        product.setId(2);
+        assertEquals(2, product.getId());
+    }
 }
