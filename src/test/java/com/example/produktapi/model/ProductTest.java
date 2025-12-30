@@ -62,4 +62,16 @@ class ProductTest {
         product.setId(100);
         assertEquals(100, product.getId());
     }
+
+    @Test //Tim
+    void testDifferentProductsHoldDifferentValues() {
+        Product p1 = new Product("A", 10.0, "cat1", "desc1", "img1");
+        Product p2 = new Product("B", 20.0, "cat2", "desc2", "img2");
+
+        assertNotEquals(p1.getTitle(), p2.getTitle());
+        assertNotEquals(p1.getPrice(), p2.getPrice());
+        assertNotEquals(p1.getCategory(), p2.getCategory());
+        assertNotEquals(p1.getDescription(), p2.getDescription());
+        assertNotEquals(p1.getImage(), p2.getImage());
+    }
 }
