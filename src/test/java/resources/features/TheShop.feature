@@ -18,7 +18,13 @@ Feature: The Shop
     Then The cart size should be 1
 
 
-  Scenario: Verify product categories display
+  Scenario: Verify product categories display  //Beata
     Given The user is on the webshop homepage for the first time
     When The user clicks on the all products button
     Then The top section of the page should display all product categories
+
+
+  Scenario: Remove item from cart  //Beata
+    Given The user adds 2 items to the cart
+    When The user removes one item from the cart
+    Then The cart should only contain the remaining item
