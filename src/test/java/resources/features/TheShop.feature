@@ -28,3 +28,10 @@ Feature: The Shop
     Given The user adds 2 items to the cart
     When The user removes one item from the cart
     Then The cart should only contain the remaining item
+
+
+
+  Scenario: Check search box function  //Nafisa
+    Given The user is on the webshop homepage
+    When User clicks on the header menu 'Shop'
+    Then User searches 'acer' in the search box

@@ -15,6 +15,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class StepDefinition {
 
     private WebDriver driver;
@@ -43,6 +45,8 @@ public class StepDefinition {
         Assertions.assertEquals(expectedTitle, driver.getTitle());
     }
 
+
+    // Kodavsnitt skriven av Nafisa Shams
     @Given("The user is on the webshop homepage for the first time")
     public void cart_empty_when_page_loads() {
         driver.get("https://webshop-agil-testautomatiserare.netlify.app/");
@@ -57,6 +61,7 @@ public class StepDefinition {
         Assertions.assertNotNull(cartCounter);
         Assertions.assertEquals("", cartCounter);
     }
+
 
     @Given("User wants to add item to cart")
     public void user_wants_to_add_item_to_cart() {
@@ -184,4 +189,35 @@ public class StepDefinition {
             Thread.currentThread().interrupt();
         }
     }
+
+
+    // Kodavsnitt skriven av Nafisa Shams
+    @Given("The user is on the webshop homepage")
+    public void searchBox() {
+        driver.get("https://webshop-agil-testautomatiserare.netlify.app/");
+        sleep(3000);
+    }
+
+    @When("User clicks on the header menu 'Shop'")
+    public void user_clicks_on_shop() throws InterruptedException {
+
+        Thread.sleep(3000);
+        WebElement shopMenu = driver.findElement(By.linkText("Shop")); // Clicka på shop i header: by linkText
+        shopMenu.click();
+
+    }
+
+    @Then("User searches 'acer' in the search box")
+    public void user_searches_acer_in_search_box() throws InterruptedException {
+        WebElement searchBox = driver.findElement(By.id("search"));
+
+        searchBox.click();
+        Thread.sleep(2000);
+        searchBox.sendKeys("acer");
+
+        WebElement searchResultTitle = driver.findElement(By.cssSelector("#main > div > div > div > h3"));
+        assertEquals("Acer SB220Q bi 21.5 inches Full HD (1920 x 1080) IPS Ultra-Thin", searchResultTitle.getText());
+    }
+
+
 }

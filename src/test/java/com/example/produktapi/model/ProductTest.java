@@ -20,18 +20,21 @@ class ProductTest {
         );
     }
 
+    // Kodavsnitt skriven av Nafisa Shams
     @Test
     public void getTitle() {
         String title = product.getTitle();
         assertEquals("Acer", title);
     }
 
+    // Kodavsnitt skriven av Nafisa Shams
     @Test
     public void getPrice() {
         Double price = product.getPrice();
         assertEquals(599.00, price);
     }
 
+    // Kodavsnitt skriven av Nafisa Shams
     @Test
     public void getCategory() {
         assertEquals("Electronics", product.getCategory());
