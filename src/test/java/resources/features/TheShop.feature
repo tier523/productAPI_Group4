@@ -35,3 +35,9 @@ Feature: The Shop
     Given The user is on the webshop homepage
     When User clicks on the header menu 'Shop'
     Then User searches 'acer' in the search box
+
+
+  Scenario: Navigate using the web menu //Elin
+    Given The user wants to navigate
+    When The user clicks on the header menu 'About'
+    Then The user should be taken to the 'About' page
