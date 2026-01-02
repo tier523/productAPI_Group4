@@ -66,6 +66,18 @@ class ProductTest {
         assertEquals(100, product.getId());
     }
 
+    @Test //Tim
+    void testNoArgsConstructor() {
+        Product product = new Product();
+        assertNotNull(product);
+        assertNull(product.getId());
+        assertNull(product.getTitle());
+        assertNull(product.getPrice());
+        assertNull(product.getCategory());
+        assertNull(product.getDescription());
+        assertNull(product.getImage());
+    }
+  
     @Test //Beata
     void testEmptyProduct() {
         Product emptyProduct = new Product();
