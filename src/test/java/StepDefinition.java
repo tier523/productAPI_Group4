@@ -15,17 +15,19 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class StepDefinition {
 
     private WebDriver driver;
 
-    @Before
+    @Before //Tim
     public void setUp() {
         ChromeOptions options = new ChromeOptions();
         driver = new ChromeDriver(options);
     }
 
-    @Given("The Shop is available")
+    @Given("The Shop is available") //SiaSam, Tim
     public void the_shop_is_available() {
         driver.get("https://webshop-agil-testautomatiserare.netlify.app/");
 
@@ -38,11 +40,13 @@ public class StepDefinition {
         // Optional navigation
     }
 
-    @Then("The title should be {string}")
+    @Then("The title should be {string}") //Tim
     public void the_title_should_be(String expectedTitle) {
         Assertions.assertEquals(expectedTitle, driver.getTitle());
     }
 
+
+    // Kodavsnitt skriven av Nafisa Shams
     @Given("The user is on the webshop homepage for the first time")
     public void cart_empty_when_page_loads() {
         driver.get("https://webshop-agil-testautomatiserare.netlify.app/");
@@ -58,13 +62,14 @@ public class StepDefinition {
         Assertions.assertEquals("", cartCounter);
     }
 
+
     @Given("User wants to add item to cart")
     public void user_wants_to_add_item_to_cart() {
         driver.get("https://webshop-agil-testautomatiserare.netlify.app/");
         sleep(3000);
     }
 
-    @When("Item is added to the cart")
+    @When("Item is added to the cart") //Elin, SiaSam, Tim
     public void item_is_added_to_the_cart() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
@@ -93,7 +98,7 @@ public class StepDefinition {
         Assertions.assertEquals("1", cartSizeText, "CartSize ska vara 1");
     }
 
-    @When("The user clicks on the all products button")
+    @When("The user clicks on the all products button")  //Beata
     public void the_user_clicks_on_the_all_products_button() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
@@ -103,7 +108,7 @@ public class StepDefinition {
         allProductsButton.click();
     }
 
-    @Then("The top section of the page should display all product categories")
+    @Then("The top section of the page should display all product categories") //Beata
     public void the_top_section_should_display_all_product_categories() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
@@ -127,6 +132,48 @@ public class StepDefinition {
         }
     }
 
+    @Given("The user adds 2 items to the cart")  //Beata
+    public void the_user_adds_two_items_to_the_cart() {
+        driver.get("https://webshop-agil-testautomatiserare.netlify.app/");
+        sleep(3000);
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement allProductsButton = driver.findElement(By.cssSelector(".btn-primary"));
+        allProductsButton.click();
+        sleep(3000);
+
+        WebElement addToCartButton = wait.until(
+                ExpectedConditions.elementToBeClickable(By.cssSelector(".card .btn.btn-primary"))
+        );
+
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", addToCartButton);
+        sleep(1000);
+
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", addToCartButton);
+        sleep(1000);
+
+        WebElement goToCheckOutButton = driver.findElement(By.cssSelector(".btn.btn-warning"));
+        goToCheckOutButton.click();
+    }
+
+    @When("The user removes one item from the cart")  //Beata
+    public void the_user_removes_one_item_from_the_cart() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        WebElement removeButton = wait.until(
+                ExpectedConditions.elementToBeClickable(By.xpath("//li[1]//div[1]//button[1]"))
+        );
+        removeButton.click();
+        sleep(2000);
+    }
+
+    @Then("The cart should only contain the remaining item") //Beata
+    public void the_cart_should_only_contain_the_remaining_item() {
+        WebElement cartSizeElement = driver.findElement(By.id("cartSize"));
+        String cartSizeText = cartSizeElement.getText();
+        Assertions.assertEquals("1", cartSizeText, "Cart should contain 1 item");
+    }
+
     @After
     public void closeBrowser() {
         sleep(3000);
@@ -142,4 +189,60 @@ public class StepDefinition {
             Thread.currentThread().interrupt();
         }
     }
+
+
+    // Kodavsnitt skriven av Nafisa Shams
+    @Given("The user is on the webshop homepage")
+    public void searchBox() {
+        driver.get("https://webshop-agil-testautomatiserare.netlify.app/");
+        sleep(3000);
+    }
+
+    @When("User clicks on the header menu 'Shop'")
+    public void user_clicks_on_shop() throws InterruptedException {
+
+        Thread.sleep(3000);
+        WebElement shopMenu = driver.findElement(By.linkText("Shop")); // Clicka på shop i header: by linkText
+        shopMenu.click();
+
+    }
+
+    @Then("User searches 'acer' in the search box")
+    public void user_searches_acer_in_search_box() throws InterruptedException {
+        WebElement searchBox = driver.findElement(By.id("search"));
+
+        searchBox.click();
+        Thread.sleep(2000);
+        searchBox.sendKeys("acer");
+
+        WebElement searchResultTitle = driver.findElement(By.cssSelector("#main > div > div > div > h3"));
+        assertEquals("Acer SB220Q bi 21.5 inches Full HD (1920 x 1080) IPS Ultra-Thin", searchResultTitle.getText());
+    }
+
+    //Elin
+    @Given("The user wants to navigate")
+    public void user_wants_to_navigate() {
+        driver.get("https://webshop-agil-testautomatiserare.netlify.app/");
+        sleep(3000);
+        WebElement headerMenuShopHome = driver.findElement(By.linkText("Home"));
+        headerMenuShopHome.click();
+        sleep(3000);
+    }
+
+    @When("The user clicks on the header menu 'About'")
+    public void user_clicks_about_link() {
+        WebElement headerMenuShopAbout = driver.findElement(By.linkText("About"));
+        headerMenuShopAbout.click();
+        sleep(3000);
+    }
+
+    @Then("The user should be taken to the 'About' page")
+    public void user_taken_to_about_page(){
+        WebElement aboutText = driver.findElement(By.xpath("//h2[text()='About The Shop']"));
+        aboutText.click();
+    }
+
 }
+
+
+
