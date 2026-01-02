@@ -42,17 +42,17 @@ class ProductTest {
         System.out.println(product.getTitle());
     }
 
-    @Test
+    @Test   //Beata
     public void getDescription() {
         assertEquals("Test Desc.", product.getDescription());
     }
 
-    @Test
+    @Test  //Beata
     public void getImage() {
         assertEquals("Acer.jpeg", product.getImage());
     }
 
-    @Test
+    @Test   //Beata
     public void setTitleAndPrice() {
         product.setTitle("Dell");
         product.setPrice(799.00);
@@ -60,10 +60,29 @@ class ProductTest {
         assertEquals(799.00, product.getPrice());
     }
 
-    @Test
+    @Test   //Beata
     public void setAndGetId() {
         product.setId(100);
         assertEquals(100, product.getId());
+    }
+
+    @Test //Beata
+    void testEmptyProduct() {
+        Product emptyProduct = new Product();
+        assertNull(emptyProduct.getTitle());
+        assertNull(emptyProduct.getPrice());
+        assertNull(emptyProduct.getCategory());
+        assertNull(emptyProduct.getDescription());
+        assertNull(emptyProduct.getImage());
+        assertNull(emptyProduct.getId());
+    }
+
+    @Test  //Beata
+    void testProductsAreIndependent() {
+        Product product1 = new Product("A", 10.0, "Category1", "Desc1", "img1.png");
+        Product product2 = new Product("B", 20.0, "Category2", "Desc2", "img2.png");
+
+        assertNotEquals(product1.getCategory(), product2.getCategory());
     }
 
     @Test //Tim
