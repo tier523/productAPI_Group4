@@ -16,6 +16,7 @@ class ProductServiceTest {
     @Autowired
     private ProductService productService;
 
+    // Kodavsnitt skriven av Nafisa Shams
     @Test
     void getAllProducts() {
         List<Product> products = productService.getAllProducts();
@@ -25,6 +26,7 @@ class ProductServiceTest {
         System.out.println("products ::::: " + String.join("\n", products.stream().map(Product::toString).toList()));
     }
 
+    // Kodavsnitt skriven av Nafisa Shams
     @Test
     public void getAllCategory(){
 
@@ -33,6 +35,7 @@ class ProductServiceTest {
         assertNotNull(categories);
         assertFalse(categories.isEmpty());
     }
+
 
     @Test
     public void getProductById_existing() {
