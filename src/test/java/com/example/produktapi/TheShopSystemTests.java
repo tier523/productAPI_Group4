@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TheShopSystemTests {
@@ -45,6 +46,7 @@ public class TheShopSystemTests {
     }
 
 
+    // Kodavsnitt skriven av Nafisa Shams
     @Test
     @DisplayName("Kolla om varukorgen är tom när sidan läddas första gången")
     public void checkCartCounter() {
@@ -100,6 +102,27 @@ public class TheShopSystemTests {
     }
 
 
+    // Kodavsnitt skriven av Nafisa Shams
+    @Test
+    @DisplayName("Testa sökfältet in shopen")
+
+    public void checkSearchBox() throws InterruptedException {
+
+        Thread.sleep(3000); // vänta för 3 sekunder
+
+        WebElement headerMenuShop = driver.findElement(By.linkText("Shop")); // Clicka på shop i header: by linkText
+        headerMenuShop.click();
+
+        WebElement searchBox = driver.findElement(By.id("search"));
+        searchBox.click();
+        Thread.sleep(2000);
+        searchBox.sendKeys("acer");
+
+        // kontrollera om sökresultatet är korrekt
+        WebElement searchResultTitle = driver.findElement(By.cssSelector("#main > div > div > div > h3"));
+        assertEquals("Acer SB220Q bi 21.5 inches Full HD (1920 x 1080) IPS Ultra-Thin", searchResultTitle.getText());
+
+    }
 
 
 
