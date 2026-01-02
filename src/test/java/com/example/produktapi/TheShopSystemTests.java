@@ -124,6 +124,28 @@ public class TheShopSystemTests {
 
     }
 
+    //Elin
+    @Test
+    @DisplayName("Test navigation")
 
+    public void testNavigation() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+        Thread.sleep(3000);
+
+        WebElement headerMenuShopHome = driver.findElement(By.linkText("Home"));
+        headerMenuShopHome.click();
+        Thread.sleep(3000);
+
+        WebElement headerMenuShopAbout = driver.findElement(By.linkText("About"));
+        headerMenuShopAbout.click();
+        Thread.sleep(3000);
+
+        //Verify that we can see the 'About The Shop' text
+        WebElement aboutText = driver.findElement(By.xpath("//h2[text()='About The Shop']"));
+        aboutText.click();
+
+    }
 
 }
+
+

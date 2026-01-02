@@ -219,5 +219,30 @@ public class StepDefinition {
         assertEquals("Acer SB220Q bi 21.5 inches Full HD (1920 x 1080) IPS Ultra-Thin", searchResultTitle.getText());
     }
 
+    //Elin
+    @Given("The user wants to navigate")
+    public void user_wants_to_navigate() {
+        driver.get("https://webshop-agil-testautomatiserare.netlify.app/");
+        sleep(3000);
+        WebElement headerMenuShopHome = driver.findElement(By.linkText("Home"));
+        headerMenuShopHome.click();
+        sleep(3000);
+    }
+
+    @When("The user clicks on the header menu 'About'")
+    public void user_clicks_about_link() {
+        WebElement headerMenuShopAbout = driver.findElement(By.linkText("About"));
+        headerMenuShopAbout.click();
+        sleep(3000);
+    }
+
+    @Then("The user should be taken to the 'About' page")
+    public void user_taken_to_about_page(){
+        WebElement aboutText = driver.findElement(By.xpath("//h2[text()='About The Shop']"));
+        aboutText.click();
+    }
 
 }
+
+
+
