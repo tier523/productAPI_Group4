@@ -17,6 +17,29 @@ Skriv testfallen utifrån <i>given, when, then.</i>
 - Dokumentation av alla sprintar
 - Er sprint som SCRUM-master
 
+## Viktiga datum
+- Inlämning inviduell projektuppgift senast söndag 11 januari
+- Gruppinlämning projektuppgift senast söndag 25 januari
+- Redovisning av projektuppgift vecka 3 (12-18 januari) eller 4 (19-25 januari)
+
+## Handledning
+- Handledning tisdag 23 december 18.30
+- Handledning tisdag 30 december 18.30
+- Handledning tisdag 6 januari 18.30
+- Handledning tisdag 13 januari 18.30 (eventuell redovisning?)
+- Handledning tisdag 20 januari 18.30 (eventuell redovisning?)
+
+## Redovisning
+Varje team redovisar genomfört arbete under 30 minuter.
+Presentationen bör innehålla
+- Introduktion, uppgiftens syfte, presentation av teammedlemmar
+- Beskrivning av det agila arbetet. Vilka metoder och arbetssätt har ni haft?
+- Redovisning av översiktsplanering och sprintplanering samt verktyg för det
+- Beskrivning av de olika testtyperna som använts
+- Genomgång av viktiga testfall och demonstration av dessa
+- Presentation och genomgång av det integrerade arbetsflödet (CI/CD)
+- Reflektioner (det agila arbetet, styrkor och svagheter med skapade tester, upptäckta brister i de testade applikationerna och rekommendationer för de applikationer som testats)
+
 
 ## Godkänna pull request
 - Sätt den som skrivit koden som asignee
@@ -28,9 +51,11 @@ Skriv testfallen utifrån <i>given, when, then.</i>
 - Godkän PR genom att göra 'squash & merge'
 
 ## Sprintar
-- Sprint 1, Tim var SCRUM-master [Dokumentation sprint 1](https://github.com/tier523/productAPI_Group4/wiki/Sprint-1)
-- Sprint 2, Elin var SCRUM-master (pågående) [Dokumentation sprint 2](https://github.com/tier523/productAPI_Group4/wiki/Sprint-2)
-- Sprint 3, Nafisa var SCRUM-master [Dokumentation sprint 3](https://github.com/tier523/productAPI_Group4/wiki/Sprint-3)
+- Sprint 1, (16 december - 23 december) Tim var SCRUM-master [Dokumentation sprint 1](https://github.com/tier523/productAPI_Group4/wiki/Sprint-1)
+- Sprint 2, (23 december - 30 december)Elin var SCRUM-master [Dokumentation sprint 2](https://github.com/tier523/productAPI_Group4/wiki/Sprint-2)
+- Sprint 3, (30 december - 6 januari) Nafisa var SCRUM-master (pågående) [Dokumentation sprint 3](https://github.com/tier523/productAPI_Group4/wiki/Sprint-3)
+- Sprint 4, (6 januari - 13 januari)
+- Sprint 5, (13 januari - 20 januari) osäker på om denna sprint kommer bli eller om 4 är den sista?
 
 
 
