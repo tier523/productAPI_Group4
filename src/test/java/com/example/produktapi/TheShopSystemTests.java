@@ -11,12 +11,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TheShopSystemTests {
     WebDriver driver;
 
-    @BeforeEach
+    @BeforeEach //Tim
     public void setUp() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
@@ -24,14 +25,14 @@ public class TheShopSystemTests {
         driver.get("https://webshop-agil-testautomatiserare.netlify.app/");
     }
 
-    @AfterEach
+    @AfterEach //Tim
     public void tearDown() {
         if (driver != null) {
             driver.quit();
         }
     }
 
-    @Test
+    @Test //SiaSam, Tim
     @DisplayName("Hemsidans Titel visas korrekt")
     public void checkWebSiteTitle() {
         try {
@@ -45,6 +46,7 @@ public class TheShopSystemTests {
     }
 
 
+    // Kodavsnitt skriven av Nafisa Shams
     @Test
     @DisplayName("Kolla om varukorgen är tom när sidan läddas första gången")
     public void checkCartCounter() {
@@ -64,7 +66,7 @@ public class TheShopSystemTests {
 
 
 
-    @Test
+    @Test //Elin, Tim
     @DisplayName("Lägg till varor i varukorgen")
     public void AddToCart() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -100,7 +102,50 @@ public class TheShopSystemTests {
     }
 
 
+    // Kodavsnitt skriven av Nafisa Shams
+    @Test
+    @DisplayName("Testa sökfältet in shopen")
 
+    public void checkSearchBox() throws InterruptedException {
 
+        Thread.sleep(3000); // vänta för 3 sekunder
+
+        WebElement headerMenuShop = driver.findElement(By.linkText("Shop")); // Clicka på shop i header: by linkText
+        headerMenuShop.click();
+
+        WebElement searchBox = driver.findElement(By.id("search"));
+        searchBox.click();
+        Thread.sleep(2000);
+        searchBox.sendKeys("acer");
+
+        // kontrollera om sökresultatet är korrekt
+        WebElement searchResultTitle = driver.findElement(By.cssSelector("#main > div > div > div > h3"));
+        assertEquals("Acer SB220Q bi 21.5 inches Full HD (1920 x 1080) IPS Ultra-Thin", searchResultTitle.getText());
+
+    }
+
+    //Elin
+    @Test
+    @DisplayName("Test navigation")
+
+    public void testNavigation() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+        Thread.sleep(3000);
+
+        WebElement headerMenuShopHome = driver.findElement(By.linkText("Home"));
+        headerMenuShopHome.click();
+        Thread.sleep(3000);
+
+        WebElement headerMenuShopAbout = driver.findElement(By.linkText("About"));
+        headerMenuShopAbout.click();
+        Thread.sleep(3000);
+
+        //Verify that we can see the 'About The Shop' text
+        WebElement aboutText = driver.findElement(By.xpath("//h2[text()='About The Shop']"));
+        aboutText.click();
+
+    }
 
 }
+
+
