@@ -11,8 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TheShopSystemTests {
     WebDriver driver;
@@ -144,6 +143,28 @@ public class TheShopSystemTests {
         WebElement aboutText = driver.findElement(By.xpath("//h2[text()='About The Shop']"));
         aboutText.click();
 
+    }
+
+
+    // Kodavsnitt skriven av Nafisa Shams
+    @Test
+    @DisplayName("Testa invalid feedback för First name i checkout")
+    public void invalidFeedbackFirstNameInCheckout() throws InterruptedException {
+
+        Thread.sleep(3000); // vänta för 3 sekunder
+
+        WebElement invalidFeedback = driver.findElement(By.partialLinkText("Checkout"));
+        invalidFeedback.click();
+        Thread.sleep(3000);
+
+        WebElement continueToCheckout = driver.findElement(By.xpath("/html/body/main/div[2]/div[2]/form/button"));
+        continueToCheckout.click();
+        Thread.sleep(3000);
+
+        // Kontrollera om feedbacken för ogiltiga förnamn är korrekt i checkoutformuläret.
+        WebElement invalidFeedbackFirstName = driver.findElement(By.xpath("/html/body/main/div[2]/div[2]/form/div[1]/div[1]/div"));
+        assertNotNull(invalidFeedbackFirstName);
+        assertEquals("Valid first name is required.", invalidFeedbackFirstName.getText());
     }
 
 }
