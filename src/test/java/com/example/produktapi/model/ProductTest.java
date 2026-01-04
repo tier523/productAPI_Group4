@@ -71,6 +71,17 @@ class ProductTest {
         Product product = new Product();
         assertNotNull(product);
         assertNull(product.getId());
+    }
+  
+    @Test //Tim 
+    void testNullValuesAllowed() {
+        Product product = new Product();
+        product.setTitle(null);
+        product.setPrice(null);
+        product.setCategory(null);
+        product.setDescription(null);
+        product.setImage(null);
+
         assertNull(product.getTitle());
         assertNull(product.getPrice());
         assertNull(product.getCategory());
@@ -116,4 +127,15 @@ class ProductTest {
         assertEquals("https://example.com/img.png", product.getImage());
     }
 
+    @Test //Tim
+    void testIdCanBeChanged() {
+        Product product = new Product();
+        assertNull(product.getId());
+
+        product.setId(1);
+        assertEquals(1, product.getId());
+
+        product.setId(2);
+        assertEquals(2, product.getId());
+    }
 }
