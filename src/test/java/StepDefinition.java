@@ -16,6 +16,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class StepDefinition {
 
@@ -240,6 +241,32 @@ public class StepDefinition {
     public void user_taken_to_about_page(){
         WebElement aboutText = driver.findElement(By.xpath("//h2[text()='About The Shop']"));
         aboutText.click();
+    }
+
+
+    // Kodavsnitt skriven av Nafisa Shams
+    @Given("The user clicks Checkout button on homepage")
+    public void user_clicks_checkout_button() {
+        driver.get("https://webshop-agil-testautomatiserare.netlify.app/");
+        sleep(3000);
+        WebElement invalidFeedback = driver.findElement(By.partialLinkText("Checkout"));
+        invalidFeedback.click();
+        sleep(3000);
+    }
+
+    @When("The user clicks continue to checkout button")
+    public void user_clicks_continue_to_checkout(){
+        WebElement continueToCheckout = driver.findElement(By.xpath("/html/body/main/div[2]/div[2]/form/button"));
+        continueToCheckout.click();
+        sleep(3000);
+    }
+
+    @Then("The user can see invalid feedback for first name on checkout form")
+    public void invalid_first_name_feedback_checkout_form(){
+        WebElement invalidFeedbackFirstName = driver.findElement(By.xpath("/html/body/main/div[2]/div[2]/form/div[1]/div[1]/div"));
+        assertNotNull(invalidFeedbackFirstName);
+        assertEquals("Valid first name is required.", invalidFeedbackFirstName.getText());
+        sleep(3000);
     }
 
 }
