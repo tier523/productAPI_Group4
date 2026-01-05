@@ -54,8 +54,7 @@ Presentationen bör innehålla
 - Sprint 1, (16 december - 23 december) Tim var SCRUM-master [Dokumentation sprint 1](https://github.com/tier523/productAPI_Group4/wiki/Sprint-1)
 - Sprint 2, (23 december - 30 december)Elin var SCRUM-master [Dokumentation sprint 2](https://github.com/tier523/productAPI_Group4/wiki/Sprint-2)
 - Sprint 3, (30 december - 6 januari) Nafisa var SCRUM-master (pågående) [Dokumentation sprint 3](https://github.com/tier523/productAPI_Group4/wiki/Sprint-3)
-- Sprint 4, (6 januari - 13 januari)
-- Sprint 5, (13 januari - 20 januari) osäker på om denna sprint kommer bli eller om 4 är den sista?
+- Sprint 4, (6 januari - 13 januari) Beata och Siavash var SCRUM-master
 
 
 
