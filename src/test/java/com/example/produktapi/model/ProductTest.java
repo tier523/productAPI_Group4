@@ -67,6 +67,13 @@ class ProductTest {
     }
 
     @Test //Tim
+    void testNoArgsConstructor() {
+        Product product = new Product();
+        assertNotNull(product);
+        assertNull(product.getId());
+    }
+    
+    @Test //Tim
     void testMutability() {
         Product product = new Product(
                 "Title",
