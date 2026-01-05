@@ -67,7 +67,29 @@ class ProductTest {
     }
 
     @Test //Tim
-    void testDifferentProductsHoldDifferentValues() {
+    void testMutability() {
+        Product product = new Product(
+                "Title",
+                10.0,
+                "cat",
+                "desc",
+                "img");
+
+        product.setTitle("Updated Title");
+        product.setPrice(20.0);
+        product.setCategory("updated category");
+        product.setDescription("updated desc");
+        product.setImage("updated.png");
+
+        assertEquals("Updated Title", product.getTitle());
+        assertEquals(20.0, product.getPrice());
+        assertEquals("updated category", product.getCategory());
+        assertEquals("updated desc", product.getDescription());
+        assertEquals("updated.png", product.getImage()); 
+    }
+  
+  @Test //Tim
+  void testDifferentProductsHoldDifferentValues() {
         Product p1 = new Product("A", 10.0, "cat1", "desc1", "img1");
         Product p2 = new Product("B", 20.0, "cat2", "desc2", "img2");
 
