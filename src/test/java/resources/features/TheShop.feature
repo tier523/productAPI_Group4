@@ -7,7 +7,7 @@ Feature: The Shop
     Then The title should be "The Shop"
 
 
-  Scenario: Check cart counter is empty when page loads first
+  Scenario: Check cart counter is empty when page loads first //Nafisa
     Given The user is on the webshop homepage for the first time
     Then The cart counter should be empty
 
@@ -30,7 +30,6 @@ Feature: The Shop
     Then The cart should only contain the remaining item
 
 
-
   Scenario: Check search box function  //Nafisa
     Given The user is on the webshop homepage
     When User clicks on the header menu 'Shop'
@@ -41,3 +40,9 @@ Feature: The Shop
     Given The user wants to navigate
     When The user clicks on the header menu 'About'
     Then The user should be taken to the 'About' page
+
+
+  Scenario: Check invalid first name feedback on checkout form //Nafisa
+    Given The user clicks Checkout button on homepage
+    When The user clicks continue to checkout button
+    Then The user can see invalid feedback for first name on checkout form
