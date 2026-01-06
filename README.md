@@ -43,12 +43,12 @@ Presentationen bör innehålla
 
 ## Godkänna pull request
 - Sätt den som skrivit koden som asignee
-- Sätt dig själv som reviewer
-- Koppla pull requesten till projectet om den inte redan är det
+- Sätt andra som reviewer
+- Koppla pull requesten till projektet om den inte redan är det
 - Koppla pull requesten till en ticket om det finns en
 - Kolla så att testerna gått grönt
 - Kontrollera att koden ser ok ut
-- Godkän PR genom att göra 'squash & merge'
+- Efter pull requesten har granskats och godkänts, squash-mergea den
 
 ## Sprintar
 - Sprint 1, (16 december - 23 december) Tim var SCRUM-master [Dokumentation sprint 1](https://github.com/tier523/productAPI_Group4/wiki/Sprint-1)
