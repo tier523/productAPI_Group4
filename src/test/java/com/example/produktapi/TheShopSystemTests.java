@@ -167,6 +167,32 @@ public class TheShopSystemTests {
         assertEquals("Valid first name is required.", invalidFeedbackFirstName.getText());
     }
 
+    @Test  //Beata
+    @DisplayName("Search works with different letter cases")
+    public void testCaseInsensitiveSearch() throws InterruptedException {
+        driver.findElement(By.linkText("Shop")).click();
+        Thread.sleep(2000);
+
+        WebElement searchBox = driver.findElement(By.id("search"));
+        searchBox.clear();
+        searchBox.sendKeys("ACER");
+        Thread.sleep(2000);
+        String resultUpper = driver.findElement(By.cssSelector("#main > div > div > div > h3")).getText();
+
+        searchBox.clear();
+        searchBox.sendKeys("acer");
+        Thread.sleep(2000);
+        String resultLower = driver.findElement(By.cssSelector("#main > div > div > div > h3")).getText();
+
+        searchBox.clear();
+        searchBox.sendKeys("Acer");
+        Thread.sleep(2000);
+        String resultCapitalized = driver.findElement(By.cssSelector("#main > div > div > div > h3")).getText();
+
+        assertEquals(resultUpper, resultLower);
+        assertEquals(resultUpper, resultCapitalized);
+    }
+
 }
 
 
