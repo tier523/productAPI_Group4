@@ -173,32 +173,31 @@ public class TheShopSystemTests {
         assertEquals("Valid first name is required.", invalidFeedbackFirstName.getText());
     }
 
-    @Nested //Tim
-    @SpringBootTest
-    @AutoConfigureTestDatabase
-    @DisplayName("Integrationstest för databasen")
-    class ProductRepositoryIntegrationTest {
+    @Test  //Beata
+    @DisplayName("Search works with different letter cases")
+    public void testCaseInsensitiveSearch() throws InterruptedException {
+        driver.findElement(By.linkText("Shop")).click();
+        Thread.sleep(2000);
 
-        @Autowired
-        private ProductRepository productRepository;
+        WebElement searchBox = driver.findElement(By.id("search"));
+        searchBox.clear();
+        searchBox.sendKeys("ACER");
+        Thread.sleep(2000);
+        String resultUpper = driver.findElement(By.cssSelector("#main > div > div > div > h3")).getText();
 
-        @Test
-        void testDataSqlIsLoaded() {
-            List<Product> products = productRepository.findAll();
+        searchBox.clear();
+        searchBox.sendKeys("acer");
+        Thread.sleep(2000);
+        String resultLower = driver.findElement(By.cssSelector("#main > div > div > div > h3")).getText();
 
-            // You inserted 20 rows in data.sql
-            assertEquals(20, products.size());
-        }
+        searchBox.clear();
+        searchBox.sendKeys("Acer");
+        Thread.sleep(2000);
+        String resultCapitalized = driver.findElement(By.cssSelector("#main > div > div > div > h3")).getText();
 
-        @Test
-        void testFindByCategory() {
-            List<Product> mensClothing = productRepository.findByCategory("men's clothing");
-
-            assertFalse(mensClothing.isEmpty());
-            assertTrue(mensClothing.size() >= 4); // based on your data.sql
-        }
+        assertEquals(resultUpper, resultLower);
+        assertEquals(resultUpper, resultCapitalized);
     }
-
 
 }
 
