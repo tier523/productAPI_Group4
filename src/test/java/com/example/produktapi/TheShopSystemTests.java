@@ -1,4 +1,6 @@
 package com.example.produktapi;
+import com.example.produktapi.model.Product;
+import com.example.produktapi.repository.ProductRepository;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -8,8 +10,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.Duration;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -166,6 +172,33 @@ public class TheShopSystemTests {
         assertNotNull(invalidFeedbackFirstName);
         assertEquals("Valid first name is required.", invalidFeedbackFirstName.getText());
     }
+
+    @Nested //Tim
+    @SpringBootTest
+    @AutoConfigureTestDatabase
+    @DisplayName("Integrationstest för databasen")
+    class ProductRepositoryIntegrationTest {
+
+        @Autowired
+        private ProductRepository productRepository;
+
+        @Test
+        void testDataSqlIsLoaded() {
+            List<Product> products = productRepository.findAll();
+
+            // You inserted 20 rows in data.sql
+            assertEquals(20, products.size());
+        }
+
+        @Test
+        void testFindByCategory() {
+            List<Product> mensClothing = productRepository.findByCategory("men's clothing");
+
+            assertFalse(mensClothing.isEmpty());
+            assertTrue(mensClothing.size() >= 4); // based on your data.sql
+        }
+    }
+
 
 }
 
