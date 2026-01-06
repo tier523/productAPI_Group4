@@ -37,7 +37,7 @@ class ProductServiceTest {
     }
 
 
-    @Test
+    @Test  //Beata
     public void getProductById_existing() {
         Product product = productService.getAllProducts().get(0);
         Product result = productService.getProductById(product.getId());
@@ -45,7 +45,7 @@ class ProductServiceTest {
         assertEquals(product.getTitle(), result.getTitle());
     }
 
-    @Test
+    @Test  //Beata
     public void getProductsByCategory_nonExistingCategory() {
         List<Product> products = productService.getProductsByCategory("NoSuchCategory");
         assertNotNull(products);
