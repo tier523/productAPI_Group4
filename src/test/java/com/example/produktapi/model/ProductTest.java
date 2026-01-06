@@ -189,4 +189,21 @@ class ProductTest {
         product.setId(2);
         assertEquals(2, product.getId());
     }
+
+    @Test //Tim
+    void testAcceptsValuesSimilarToDatabaseRows() {
+        Product product = new Product(
+                "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+                109.95,
+                "men's clothing",
+                "Fin väska me plats för dator",
+                "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
+        );
+
+        assertEquals("Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops", product.getTitle());
+        assertEquals(109.95, product.getPrice());
+        assertEquals("men's clothing", product.getCategory());
+        assertEquals("Fin väska me plats för dator", product.getDescription());
+        assertEquals("https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg", product.getImage());
+    }
 }
