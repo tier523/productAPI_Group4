@@ -12,7 +12,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -21,6 +20,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class StepDefinition {
 
     private WebDriver driver;
+    String resultUpper;
+    String resultLower;
+    String resultCapitalized;
 
     @Before //Tim
     public void setUp() {
@@ -62,7 +64,6 @@ public class StepDefinition {
         Assertions.assertNotNull(cartCounter);
         Assertions.assertEquals("", cartCounter);
     }
-
 
     @Given("User wants to add item to cart")
     public void user_wants_to_add_item_to_cart() {
@@ -191,7 +192,6 @@ public class StepDefinition {
         }
     }
 
-
     // Kodavsnitt skriven av Nafisa Shams
     @Given("The user is on the webshop homepage")
     public void searchBox() {
@@ -267,6 +267,32 @@ public class StepDefinition {
         assertNotNull(invalidFeedbackFirstName);
         assertEquals("Valid first name is required.", invalidFeedbackFirstName.getText());
         sleep(3000);
+    }
+
+    @When("User searches for {string}")  //Beata
+    public void user_searches_for(String searchText) throws InterruptedException {
+        WebElement searchBox = driver.findElement(By.id("search"));
+        searchBox.clear();
+        Thread.sleep(1000);
+        searchBox.sendKeys(searchText);
+        Thread.sleep(2000);
+
+        String resultText = driver
+                .findElement(By.cssSelector("#main > div > div > div > h3"))
+                .getText();
+        if (searchText.equals("ACER")) {
+            resultUpper = resultText;
+        } else if (searchText.equals("acer")) {
+            resultLower = resultText;
+        } else if (searchText.equals("Acer")) {
+            resultCapitalized = resultText;
+        }
+    }
+
+    @Then("The search result should be the same for all cases") //Beata
+    public void the_search_result_should_be_the_same_for_all_cases() {
+        assertEquals(resultUpper, resultLower);
+        assertEquals(resultUpper, resultCapitalized);
     }
 
 }
