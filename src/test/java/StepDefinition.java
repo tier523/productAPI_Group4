@@ -249,15 +249,15 @@ public class StepDefinition {
     public void user_clicks_checkout_button() {
         driver.get("https://webshop-agil-testautomatiserare.netlify.app/");
         sleep(3000);
-        WebElement invalidFeedback = driver.findElement(By.partialLinkText("Checkout"));
-        invalidFeedback.click();
-        sleep(3000);
+        WebElement checkout = driver.findElement(By.partialLinkText("Checkout"));
+        checkout.click();
     }
 
     @When("The user clicks continue to checkout button")
     public void user_clicks_continue_to_checkout(){
-        WebElement continueToCheckout = driver.findElement(By.xpath("/html/body/main/div[2]/div[2]/form/button"));
-        continueToCheckout.click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement continueToCheckout = wait.until( ExpectedConditions.elementToBeClickable(By.xpath("/html/body/main/div[2]/div[2]/form/button")));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", continueToCheckout);
         sleep(3000);
     }
 
