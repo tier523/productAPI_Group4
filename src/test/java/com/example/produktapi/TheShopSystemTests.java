@@ -104,7 +104,6 @@ public class TheShopSystemTests {
     // Kodavsnitt skriven av Nafisa Shams
     @Test
     @DisplayName("Testa sökfältet in shopen")
-
     public void checkSearchBox() throws InterruptedException {
 
         Thread.sleep(3000); // vänta för 3 sekunder
@@ -150,15 +149,15 @@ public class TheShopSystemTests {
     @Test
     @DisplayName("Testa invalid feedback för First name i checkout")
     public void invalidFeedbackFirstNameInCheckout() throws InterruptedException {
-
+        // Klicka på Checkout button
         Thread.sleep(3000); // vänta för 3 sekunder
+        WebElement checkout = driver.findElement(By.partialLinkText("Checkout"));
+        checkout.click();
 
-        WebElement invalidFeedback = driver.findElement(By.partialLinkText("Checkout"));
-        invalidFeedback.click();
-        Thread.sleep(3000);
-
-        WebElement continueToCheckout = driver.findElement(By.xpath("/html/body/main/div[2]/div[2]/form/button"));
-        continueToCheckout.click();
+        // Klicka på Continue to checkout button
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement continueToCheckout = wait.until( ExpectedConditions.elementToBeClickable(By.xpath("/html/body/main/div[2]/div[2]/form/button")));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", continueToCheckout);
         Thread.sleep(3000);
 
         // Kontrollera om feedbacken för ogiltiga förnamn är korrekt i checkoutformuläret.
