@@ -46,3 +46,12 @@ Feature: The Shop
     Given The user clicks Checkout button on homepage
     When The user clicks continue to checkout button
     Then The user can see invalid feedback for first name on checkout form
+
+
+  Scenario: Search works with different letter cases  //Beata
+    Given The user is on the webshop homepage
+    When User clicks on the header menu 'Shop'
+    And User searches for "ACER"
+    And User searches for "acer"
+    And User searches for "Acer"
+    Then The search result should be the same for all cases
