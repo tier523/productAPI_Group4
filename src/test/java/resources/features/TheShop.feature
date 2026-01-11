@@ -1,7 +1,6 @@
 Feature: The Shop
 
-  //Tim
-  Scenario: The Shop should show correct title
+  Scenario: The Shop should show correct title //Tim
     Given The Shop is available
     When User visits The Shop
     Then The title should be "The Shop"
@@ -12,7 +11,7 @@ Feature: The Shop
     Then The cart counter should be empty
 
 
-  Scenario: Add item to cart
+  Scenario: Add item to cart //Elin
     Given User wants to add item to cart
     When Item is added to the cart
     Then The cart size should be 1

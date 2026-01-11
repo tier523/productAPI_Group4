@@ -10,14 +10,14 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
+@SpringBootTest //Tim
 @AutoConfigureTestDatabase
 public class RepositoryIntegrationTest {
 
     @Autowired
     private ProductRepository productRepository;
 
-    @Test
+    @Test //Tim
     void testDataSqlIsLoaded() {
         List<Product> products = productRepository.findAll();
 
@@ -25,7 +25,7 @@ public class RepositoryIntegrationTest {
         assertEquals(20, products.size());
     }
 
-    @Test
+    @Test //Tim
     void testFindByCategory() {
         List<Product> mensClothing = productRepository.findByCategory("men's clothing");
 

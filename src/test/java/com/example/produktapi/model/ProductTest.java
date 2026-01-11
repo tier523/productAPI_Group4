@@ -9,6 +9,7 @@ class ProductTest {
 
     private Product product;
 
+    // Kodavsnitt skriven av Nafisa Shams
     @BeforeEach
     public void setUp() {
         product = new Product(
