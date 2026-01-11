@@ -30,7 +30,23 @@ public class StepDefinition {
         driver = new ChromeDriver(options);
     }
 
-    @Given("The Shop is available") //SiaSam, Tim
+    @After  //Siavash
+    public void closeBrowser() {
+        sleep(3000);
+        if (driver != null) {
+            driver.quit();
+        }
+    }
+
+    private void sleep(long millis) {  //Siavash
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
+
+    @Given("The Shop is available") //Siavash, Tim
     public void the_shop_is_available() {
         driver.get("https://webshop-agil-testautomatiserare.netlify.app/");
 
@@ -38,25 +54,24 @@ public class StepDefinition {
                 .until(ExpectedConditions.titleIs("The Shop"));
     }
 
-    @When("User visits The Shop")
+    @When("User visits The Shop")  //Siavash
     public void user_visits_the_shop() {
         // Optional navigation
     }
 
-    @Then("The title should be {string}") //Tim
+    @Then("The title should be {string}") //Siavash, Tim
     public void the_title_should_be(String expectedTitle) {
         Assertions.assertEquals(expectedTitle, driver.getTitle());
     }
 
 
-    // Kodavsnitt skriven av Nafisa Shams
-    @Given("The user is on the webshop homepage for the first time")
+    @Given("The user is on the webshop homepage for the first time")  //Nafisa, Siavash
     public void cart_empty_when_page_loads() {
         driver.get("https://webshop-agil-testautomatiserare.netlify.app/");
         sleep(3000);
     }
 
-    @Then("The cart counter should be empty")
+    @Then("The cart counter should be empty")  //Nafisa
     public void cart_counter_should_be_empty() {
         WebElement checkCartCounter = driver.findElement(By.id("buttonSize"));
         String cartCounter = checkCartCounter.getText();
@@ -65,13 +80,13 @@ public class StepDefinition {
         Assertions.assertEquals("", cartCounter);
     }
 
-    @Given("User wants to add item to cart")
+    @Given("User wants to add item to cart")  //Elin
     public void user_wants_to_add_item_to_cart() {
         driver.get("https://webshop-agil-testautomatiserare.netlify.app/");
         sleep(3000);
     }
 
-    @When("Item is added to the cart") //Elin, SiaSam, Tim
+    @When("Item is added to the cart") //Elin, Siavash, Tim
     public void item_is_added_to_the_cart() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
@@ -89,7 +104,7 @@ public class StepDefinition {
         goToCheckOutButton.click();
     }
 
-    @Then("The cart size should be 1")
+    @Then("The cart size should be 1")  //Elin
     public void the_cart_size_should_be_1() {
         sleep(5000);
 
@@ -176,30 +191,13 @@ public class StepDefinition {
         Assertions.assertEquals("1", cartSizeText, "Cart should contain 1 item");
     }
 
-    @After
-    public void closeBrowser() {
-        sleep(3000);
-        if (driver != null) {
-            driver.quit();
-        }
-    }
-
-    private void sleep(long millis) {
-        try {
-            Thread.sleep(millis);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
-    }
-
-    // Kodavsnitt skriven av Nafisa Shams
-    @Given("The user is on the webshop homepage")
+    @Given("The user is on the webshop homepage")  //Nafisa
     public void searchBox() {
         driver.get("https://webshop-agil-testautomatiserare.netlify.app/");
         sleep(3000);
     }
 
-    @When("User clicks on the header menu 'Shop'")
+    @When("User clicks on the header menu 'Shop'")  //Nafisa
     public void user_clicks_on_shop() throws InterruptedException {
 
         Thread.sleep(3000);
@@ -208,7 +206,7 @@ public class StepDefinition {
 
     }
 
-    @Then("User searches 'acer' in the search box")
+    @Then("User searches 'acer' in the search box")  //Nafisa
     public void user_searches_acer_in_search_box() throws InterruptedException {
         WebElement searchBox = driver.findElement(By.id("search"));
 
@@ -220,8 +218,7 @@ public class StepDefinition {
         assertEquals("Acer SB220Q bi 21.5 inches Full HD (1920 x 1080) IPS Ultra-Thin", searchResultTitle.getText());
     }
 
-    //Elin
-    @Given("The user wants to navigate")
+    @Given("The user wants to navigate")  //Elin
     public void user_wants_to_navigate() {
         driver.get("https://webshop-agil-testautomatiserare.netlify.app/");
         sleep(3000);
@@ -230,22 +227,21 @@ public class StepDefinition {
         sleep(3000);
     }
 
-    @When("The user clicks on the header menu 'About'")
+    @When("The user clicks on the header menu 'About'")  //Elin
     public void user_clicks_about_link() {
         WebElement headerMenuShopAbout = driver.findElement(By.linkText("About"));
         headerMenuShopAbout.click();
         sleep(3000);
     }
 
-    @Then("The user should be taken to the 'About' page")
+    @Then("The user should be taken to the 'About' page")  //Elin
     public void user_taken_to_about_page(){
         WebElement aboutText = driver.findElement(By.xpath("//h2[text()='About The Shop']"));
         aboutText.click();
     }
 
 
-    // Kodavsnitt skriven av Nafisa Shams
-    @Given("The user clicks Checkout button on homepage")
+    @Given("The user clicks Checkout button on homepage")  //Nafisa
     public void user_clicks_checkout_button() {
         driver.get("https://webshop-agil-testautomatiserare.netlify.app/");
         sleep(3000);
@@ -253,7 +249,7 @@ public class StepDefinition {
         checkout.click();
     }
 
-    @When("The user clicks continue to checkout button")
+    @When("The user clicks continue to checkout button")  //Nafisa
     public void user_clicks_continue_to_checkout(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement continueToCheckout = wait.until( ExpectedConditions.elementToBeClickable(By.xpath("/html/body/main/div[2]/div[2]/form/button")));
@@ -261,7 +257,7 @@ public class StepDefinition {
         sleep(3000);
     }
 
-    @Then("The user can see invalid feedback for first name on checkout form")
+    @Then("The user can see invalid feedback for first name on checkout form")  //Nafisa
     public void invalid_first_name_feedback_checkout_form(){
         WebElement invalidFeedbackFirstName = driver.findElement(By.xpath("/html/body/main/div[2]/div[2]/form/div[1]/div[1]/div"));
         assertNotNull(invalidFeedbackFirstName);
